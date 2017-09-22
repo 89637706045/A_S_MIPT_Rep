@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i1, i2, temp_i1, temp_i2, x[4], y[4], i[4];
+    double temp = 0;
+    for(i1 = 0; i1 < 4; i1++)
+    {
+        i[i1] = 0;
+    }
+    for(i1 = 1; i1 <= 4; i1++)
+    {
+        printf("Введите через пробел пару чисел (x%d, y%d): ", i1, i1);
+        scanf("%d%d", &x[i1 - 1], &y[i1 - 1]);
+    }
+    for(i1 = 0; i1 < 4; i1++)
+    {
+        for(i2 = 0; i2 < 4; i2++)
+        {
+            if(sqrt(pow(x[i2] - x[i1], 2) + pow(y[i2] - y[i1], 2)) > temp)
+            {
+                temp = sqrt(pow(x[i2] - x[i1], 2) + pow(y[i2] - y[i1], 2));
+                temp_i1 = i1;
+                temp_i2 = i2;
+            }
+        }
+    }
+    i[temp_i1]++;
+    i[temp_i2]++;
+    for(i1 = 0; i1 < 4; i1++)
+    {
+        if(i[i1] == 0)
+        {
+            temp = sqrt(pow(x[i1] - x[temp_i1], 2) + pow(y[i1] - y[temp_i1], 2)) * sqrt(pow(x[temp_i2] - x[i1], 2) + pow(y[temp_i2] - y[i1], 2));
+        }
+    }
+    printf("%f", temp);
+    return 0;
+}
