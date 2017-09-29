@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, i;
+    printf("Введите степень бинома (1-x): ");
+    scanf("%d", &n);
+    printf("(1-x)^%d= ", n);
+    for(i = 0; i <= n; i++)
+    {
+        printf("%d*x^%d", c(n, i), i);
+        if(i != n)
+        {
+            printf(" + ");
+        }
+    }
+    return 0;
+}
+
+fact (int n)
+{
+    if(n == 1 || n == 0)
+    {
+        n = 1;
+    }
+    else
+    {
+        n = n * fact(n - 1);
+    }
+    return n;
+}
+
+int c(int n, int k)
+{
+    return fact(n) / (fact(n - k) * fact(k));
+}
