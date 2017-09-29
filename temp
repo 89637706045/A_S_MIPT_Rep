@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, m, temp_n, temp_i = 1, a[3], i, l;
+    printf("Введите количество людей: ");
+    scanf("%d", &n);
+    temp_n = n;
+    int a_i[n];
+    for(i = 1; i <= n; i++)
+    {
+        a_i[i - 1] = i;
+    }
+    printf("Введите количество слов в считалке: ");
+    scanf("%d", &m);
+    while(temp_n > m)
+    {
+        temp_n--;
+        for(i = a[2]; i < temp_n; i++)
+        {
+            a_i[i] = a_i[i + 1];
+        }
+    }
+    printf("Игроки, выбывшие последними: %d, %d и %d.", a_i[2], a_i[1], a_i[0]);
+    return 0;
+}
+
+int cyc_add(int n, int m, int i)
+{
+    m -= (n + 1) * (int)(m / (n + 1));
+    i += m - 1;
+    return i;
+}
