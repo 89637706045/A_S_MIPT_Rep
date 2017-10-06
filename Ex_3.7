@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int cyc_add(int i, int n, int m)
+{
+    m -= n * (int)(m / n);
+    i += m - 1;
+    if (i > n)
+    {
+        i -= n;
+    }
+    return i;
+}
+
+int main()
+{
+    int temp_i = 1, n, temp_n, temp, m, i1, i2, a2[3];
+    printf("Введите количество людей: ");
+    scanf("%d", &n);
+    int a1[n];
+    temp_n = n;
+    printf("Введите количество слов в считалке: ");
+    scanf("%d", &m);
+    for(i1 = 0; i1 < n; i1++)
+    {
+        a1[i1] = i1 + 1;
+    }
+    for(i1 = 0; i1 < n; i1++)
+    {
+        temp = cyc_add(temp_i, temp_n, m);
+        a2[0] = a2[1];
+        a2[1] = a2[2];
+        a2[2] = a1[temp - 1];
+        for(i2 = temp - 1; i2 < n; i2++)
+        {
+            a1[i2] = a1[i2 + 1];
+        }
+        temp_i = cyc_add(temp_i, temp_n, m);
+        temp_n--;
+    }
+    printf("%d, %d и %d выбыли последними.", a2[0], a2[1], a2[2]);
+    return 0;
+}
